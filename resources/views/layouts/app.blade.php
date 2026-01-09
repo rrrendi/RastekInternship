@@ -45,10 +45,10 @@
                     <a href="{{ route('home') }}" class="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium transition">
                         Beranda
                     </a>
-                    <a href="{{ route('applicant.register') }}" class="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium transition">
+                    <a href="{{ route('pendaftar.register') }}" class="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium transition">
                         Daftar
                     </a>
-                    <a href="{{ route('applicant.check-status') }}" class="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium transition">
+                    <a href="{{ route('pendaftar.check-status') }}" class="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium transition">
                         Cek Status
                     </a>
 
@@ -81,10 +81,10 @@
                 <a href="{{ route('home') }}" class="block text-gray-700 hover:bg-green-50 hover:text-green-600 px-3 py-2 rounded-md text-base font-medium transition">
                     Beranda
                 </a>
-                <a href="{{ route('applicant.register') }}" class="block text-gray-700 hover:bg-green-50 hover:text-green-600 px-3 py-2 rounded-md text-base font-medium transition">
+                <a href="{{ route('pendaftar.register') }}" class="block text-gray-700 hover:bg-green-50 hover:text-green-600 px-3 py-2 rounded-md text-base font-medium transition">
                     Daftar
                 </a>
-                <a href="{{ route('applicant.check-status') }}" class="block text-gray-700 hover:bg-green-50 hover:text-green-600 px-3 py-2 rounded-md text-base font-medium transition">
+                <a href="{{ route('pendaftar.check-status') }}" class="block text-gray-700 hover:bg-green-50 hover:text-green-600 px-3 py-2 rounded-md text-base font-medium transition">
                     Cek Status
                 </a>
 

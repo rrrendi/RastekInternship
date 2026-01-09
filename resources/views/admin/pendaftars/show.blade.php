@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="mb-6">
-    <a href="{{ route('admin.applicants.index') }}" class="text-green-600 hover:text-green-700 font-medium">
+    <a href="{{ route('admin.pendaftars.index') }}" class="text-green-600 hover:text-green-700 font-medium">
         ← Kembali ke Daftar Pendaftar
     </a>
 </div>
@@ -19,31 +19,31 @@
             <div class="grid md:grid-cols-2 gap-4">
                 <div>
                     <label class="text-sm text-gray-600">Nama Lengkap</label>
-                    <p class="font-medium text-gray-900">{{ $applicant->full_name }}</p>
+                    <p class="font-medium text-gray-900">{{ $pendaftar->full_name }}</p>
                 </div>
                 <div>
                     <label class="text-sm text-gray-600">Email</label>
-                    <p class="font-medium text-gray-900">{{ $applicant->email }}</p>
+                    <p class="font-medium text-gray-900">{{ $pendaftar->email }}</p>
                 </div>
                 <div>
                     <label class="text-sm text-gray-600">Nomor Telepon</label>
-                    <p class="font-medium text-gray-900">{{ $applicant->phone }}</p>
+                    <p class="font-medium text-gray-900">{{ $pendaftar->phone }}</p>
                 </div>
                 <div>
                     <label class="text-sm text-gray-600">Jenis Kelamin</label>
-                    <p class="font-medium text-gray-900">{{ $applicant->gender }}</p>
+                    <p class="font-medium text-gray-900">{{ $pendaftar->gender }}</p>
                 </div>
                 <div>
                     <label class="text-sm text-gray-600">Tempat Lahir</label>
-                    <p class="font-medium text-gray-900">{{ $applicant->birth_place }}</p>
+                    <p class="font-medium text-gray-900">{{ $pendaftar->birth_place }}</p>
                 </div>
                 <div>
                     <label class="text-sm text-gray-600">Tanggal Lahir</label>
-                    <p class="font-medium text-gray-900">{{ $applicant->birth_date->format('d F Y') }}</p>
+                    <p class="font-medium text-gray-900">{{ $pendaftar->birth_date->format('d F Y') }}</p>
                 </div>
                 <div class="md:col-span-2">
                     <label class="text-sm text-gray-600">Alamat</label>
-                    <p class="font-medium text-gray-900">{{ $applicant->address }}</p>
+                    <p class="font-medium text-gray-900">{{ $pendaftar->address }}</p>
                 </div>
             </div>
         </div>
@@ -54,23 +54,23 @@
             <div class="grid md:grid-cols-2 gap-4">
                 <div>
                     <label class="text-sm text-gray-600">Jenjang Pendidikan</label>
-                    <p class="font-medium text-gray-900">{{ $applicant->education_level }}</p>
+                    <p class="font-medium text-gray-900">{{ $pendaftar->education_level }}</p>
                 </div>
                 <div>
                     <label class="text-sm text-gray-600">Nama Institusi</label>
-                    <p class="font-medium text-gray-900">{{ $applicant->institution }}</p>
+                    <p class="font-medium text-gray-900">{{ $pendaftar->institution }}</p>
                 </div>
                 <div>
                     <label class="text-sm text-gray-600">
-                        {{ $applicant->education_level === 'SMK' ? 'Rata-rata Rapor' : 'IPK' }}
+                        {{ $pendaftar->education_level === 'SMK' ? 'Rata-rata Rapor' : 'IPK' }}
                     </label>
-                    <p class="font-medium text-gray-900">{{ number_format($applicant->gpa_average, 2) }}</p>
+                    <p class="font-medium text-gray-900">{{ number_format($pendaftar->gpa_average, 2) }}</p>
                 </div>
             </div>
         </div>
 
         <!-- Documents -->
-        @if($applicant->documents)
+        @if($pendaftar->documents)
         <div class="bg-white rounded-xl border border-gray-200 p-6">
             <h3 class="text-lg font-semibold text-gray-900 mb-4">Dokumen</h3>
             <div class="space-y-3">
@@ -81,7 +81,7 @@
                         </svg>
                         <span class="font-medium text-gray-900">Surat Pengantar</span>
                     </div>
-                    <a href="{{ Storage::url($applicant->documents->cover_letter_path) }}" target="_blank"
+                    <a href="{{ Storage::url($pendaftar->documents->cover_letter_path) }}" target="_blank"
                        class="text-green-600 hover:text-green-700 font-medium text-sm">
                         Lihat →
                     </a>
@@ -94,7 +94,7 @@
                         </svg>
                         <span class="font-medium text-gray-900">Transkrip Nilai</span>
                     </div>
-                    <a href="{{ Storage::url($applicant->documents->transcript_path) }}" target="_blank"
+                    <a href="{{ Storage::url($pendaftar->documents->transcript_path) }}" target="_blank"
                        class="text-green-600 hover:text-green-700 font-medium text-sm">
                         Lihat →
                     </a>
@@ -107,13 +107,13 @@
                         </svg>
                         <span class="font-medium text-gray-900">Curriculum Vitae</span>
                     </div>
-                    <a href="{{ Storage::url($applicant->documents->cv_path) }}" target="_blank"
+                    <a href="{{ Storage::url($pendaftar->documents->cv_path) }}" target="_blank"
                        class="text-green-600 hover:text-green-700 font-medium text-sm">
                         Lihat →
                     </a>
                 </div>
 
-                @if($applicant->documents->photo_path)
+                @if($pendaftar->documents->photo_path)
                 <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                     <div class="flex items-center">
                         <svg class="w-5 h-5 text-blue-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
@@ -121,14 +121,14 @@
                         </svg>
                         <span class="font-medium text-gray-900">Pas Foto</span>
                     </div>
-                    <a href="{{ Storage::url($applicant->documents->photo_path) }}" target="_blank"
+                    <a href="{{ Storage::url($pendaftar->documents->photo_path) }}" target="_blank"
                        class="text-green-600 hover:text-green-700 font-medium text-sm">
                         Lihat →
                     </a>
                 </div>
                 @endif
 
-                @if($applicant->documents->id_card_path)
+                @if($pendaftar->documents->id_card_path)
                 <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                     <div class="flex items-center">
                         <svg class="w-5 h-5 text-purple-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
@@ -136,7 +136,7 @@
                         </svg>
                         <span class="font-medium text-gray-900">KTP</span>
                     </div>
-                    <a href="{{ Storage::url($applicant->documents->id_card_path) }}" target="_blank"
+                    <a href="{{ Storage::url($pendaftar->documents->id_card_path) }}" target="_blank"
                        class="text-green-600 hover:text-green-700 font-medium text-sm">
                         Lihat →
                     </a>
@@ -153,17 +153,17 @@
         <div class="bg-white rounded-xl border border-gray-200 p-6">
             <h3 class="text-lg font-semibold text-gray-900 mb-4">Update Status</h3>
             
-            <form action="{{ route('admin.applicants.update-status', $applicant) }}" method="POST">
+            <form action="{{ route('admin.pendaftars.update-status', $pendaftar) }}" method="POST">
                 @csrf
                 @method('PATCH')
                 
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Status Pendaftar</label>
                     <select name="status" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
-                        <option value="pending" {{ $applicant->status === 'pending' ? 'selected' : '' }}>Pending</option>
-                        <option value="reviewed" {{ $applicant->status === 'reviewed' ? 'selected' : '' }}>Reviewed</option>
-                        <option value="accepted" {{ $applicant->status === 'accepted' ? 'selected' : '' }}>Diterima</option>
-                        <option value="rejected" {{ $applicant->status === 'rejected' ? 'selected' : '' }}>Ditolak</option>
+                        <option value="pending" {{ $pendaftar->status === 'pending' ? 'selected' : '' }}>Pending</option>
+                        <option value="reviewed" {{ $pendaftar->status === 'reviewed' ? 'selected' : '' }}>Reviewed</option>
+                        <option value="accepted" {{ $pendaftar->status === 'accepted' ? 'selected' : '' }}>Diterima</option>
+                        <option value="rejected" {{ $pendaftar->status === 'rejected' ? 'selected' : '' }}>Ditolak</option>
                     </select>
                 </div>
 
@@ -171,7 +171,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-2">Catatan (Opsional)</label>
                     <textarea name="notes" rows="4" 
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                        placeholder="Tambahkan catatan untuk pendaftar...">{{ $applicant->notes }}</textarea>
+                        placeholder="Tambahkan catatan untuk pendaftar...">{{ $pendaftar->notes }}</textarea>
                 </div>
 
                 <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-lg font-medium hover:bg-green-700 transition">
@@ -186,11 +186,11 @@
             <div class="space-y-3 text-sm">
                 <div>
                     <label class="text-gray-600">Status Saat Ini</label>
-                    @if($applicant->status === 'pending')
+                    @if($pendaftar->status === 'pending')
                         <p class="font-medium text-yellow-600">Menunggu Review</p>
-                    @elseif($applicant->status === 'reviewed')
+                    @elseif($pendaftar->status === 'reviewed')
                         <p class="font-medium text-blue-600">Sedang Diproses</p>
-                    @elseif($applicant->status === 'accepted')
+                    @elseif($pendaftar->status === 'accepted')
                         <p class="font-medium text-green-600">Diterima</p>
                     @else
                         <p class="font-medium text-red-600">Ditolak</p>
@@ -198,11 +198,11 @@
                 </div>
                 <div>
                     <label class="text-gray-600">Tanggal Pendaftaran</label>
-                    <p class="font-medium text-gray-900">{{ $applicant->created_at->format('d F Y, H:i') }}</p>
+                    <p class="font-medium text-gray-900">{{ $pendaftar->created_at->format('d F Y, H:i') }}</p>
                 </div>
                 <div>
                     <label class="text-gray-600">Terakhir Diupdate</label>
-                    <p class="font-medium text-gray-900">{{ $applicant->updated_at->format('d F Y, H:i') }}</p>
+                    <p class="font-medium text-gray-900">{{ $pendaftar->updated_at->format('d F Y, H:i') }}</p>
                 </div>
             </div>
         </div>
@@ -212,7 +212,7 @@
             <h3 class="text-lg font-semibold text-red-600 mb-2">Hapus Pendaftar</h3>
             <p class="text-sm text-gray-600 mb-4">Tindakan ini tidak dapat dibatalkan. Semua data dan dokumen akan dihapus permanen.</p>
             
-            <form action="{{ route('admin.applicants.destroy', $applicant) }}" method="POST" 
+            <form action="{{ route('admin.pendaftars.destroy', $pendaftar) }}" method="POST" 
                   onsubmit="return confirm('Apakah Anda yakin ingin menghapus pendaftar ini? Tindakan ini tidak dapat dibatalkan.')">
                 @csrf
                 @method('DELETE')

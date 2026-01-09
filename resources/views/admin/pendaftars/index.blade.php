@@ -6,7 +6,7 @@
 @section('content')
 <!-- Filter Section -->
 <div class="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-    <form method="GET" action="{{ route('admin.applicants.index') }}" class="flex flex-wrap gap-4">
+    <form method="GET" action="{{ route('admin.pendaftars.index') }}" class="flex flex-wrap gap-4">
         <div class="flex-1 min-w-[200px]">
             <input type="text" name="search" value="{{ request('search') }}" 
                 placeholder="Cari nama atau email..." 
@@ -26,14 +26,14 @@
         </button>
         
         @if(request('search') || request('status'))
-        <a href="{{ route('admin.applicants.index') }}" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition">
+        <a href="{{ route('admin.pendaftars.index') }}" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition">
             Reset
         </a>
         @endif
     </form>
 </div>
 
-<!-- Applicants Table -->
+<!-- pendaftars Table -->
 <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
     <div class="overflow-x-auto">
         <table class="w-full">
@@ -51,44 +51,44 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
-                @forelse($applicants as $index => $applicant)
+                @forelse($pendaftars as $index => $pendaftar)
                 <tr class="hover:bg-gray-50">
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                        {{ $applicants->firstItem() + $index }}
+                        {{ $pendaftars->firstItem() + $index }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">{{ $applicant->full_name }}</div>
-                        <div class="text-xs text-gray-500">{{ $applicant->birth_place }}, {{ $applicant->birth_date->format('d/m/Y') }}</div>
+                        <div class="text-sm font-medium text-gray-900">{{ $pendaftar->full_name }}</div>
+                        <div class="text-xs text-gray-500">{{ $pendaftar->birth_place }}, {{ $pendaftar->birth_date->format('d/m/Y') }}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                        {{ $applicant->email }}
+                        {{ $pendaftar->email }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                        {{ $applicant->phone }}
+                        {{ $pendaftar->phone }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">{{ $applicant->education_level }}</div>
-                        <div class="text-xs text-gray-500">{{ Str::limit($applicant->institution, 20) }}</div>
+                        <div class="text-sm text-gray-900">{{ $pendaftar->education_level }}</div>
+                        <div class="text-xs text-gray-500">{{ Str::limit($pendaftar->institution, 20) }}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                        {{ number_format($applicant->gpa_average, 2) }}
+                        {{ number_format($pendaftar->gpa_average, 2) }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        @if($applicant->status === 'pending')
+                        @if($pendaftar->status === 'pending')
                             <span class="px-2 py-1 text-xs font-semibold bg-yellow-100 text-yellow-800 rounded-full">Pending</span>
-                        @elseif($applicant->status === 'reviewed')
+                        @elseif($pendaftar->status === 'reviewed')
                             <span class="px-2 py-1 text-xs font-semibold bg-blue-100 text-blue-800 rounded-full">Reviewed</span>
-                        @elseif($applicant->status === 'accepted')
+                        @elseif($pendaftar->status === 'accepted')
                             <span class="px-2 py-1 text-xs font-semibold bg-green-100 text-green-800 rounded-full">Diterima</span>
                         @else
                             <span class="px-2 py-1 text-xs font-semibold bg-red-100 text-red-800 rounded-full">Ditolak</span>
                         @endif
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                        {{ $applicant->created_at->format('d/m/Y') }}
+                        {{ $pendaftar->created_at->format('d/m/Y') }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm">
-                        <a href="{{ route('admin.applicants.show', $applicant) }}" 
+                        <a href="{{ route('admin.pendaftars.show', $pendaftar) }}" 
                            class="text-green-600 hover:text-green-700 font-medium">
                             Detail
                         </a>
@@ -106,9 +106,9 @@
     </div>
 
     <!-- Pagination -->
-    @if($applicants->hasPages())
+    @if($pendaftars->hasPages())
     <div class="px-6 py-4 border-t border-gray-200">
-        {{ $applicants->links() }}
+        {{ $pendaftars->links() }}
     </div>
     @endif
 </div>

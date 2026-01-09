@@ -2,21 +2,21 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ApplicantController;
+use App\Http\Controllers\pendaftarController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\ApplicantManagementController;
+use App\Http\Controllers\Admin\pendaftarManagementController;
 use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\Admin\UserManagementController;
 use Illuminate\Support\Facades\Auth;
 
 // Public Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/daftar', [ApplicantController::class, 'create'])->name('applicant.register');
-Route::post('/daftar', [ApplicantController::class, 'store'])->name('applicant.store');
+Route::get('/daftar', [pendaftarController::class, 'create'])->name('pendaftar.register');
+Route::post('/daftar', [pendaftarController::class, 'store'])->name('pendaftar.store');
 Route::get('/cek-status', function() {
-    return view('applicant.check-status');
-})->name('applicant.check-status');
-Route::post('/cek-status', [ApplicantController::class, 'checkStatus'])->name('applicant.status');
+    return view('pendaftar.check-status');
+})->name('pendaftar.check-status');
+Route::post('/cek-status', [pendaftarController::class, 'checkStatus'])->name('pendaftar.status');
 
 // Dashboard route - PENTING untuk redirect setelah login
 Route::middleware(['auth'])->group(function () {
@@ -34,11 +34,11 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
-    // Applicant Management
-    Route::get('/applicants', [ApplicantManagementController::class, 'index'])->name('applicants.index');
-    Route::get('/applicants/{applicant}', [ApplicantManagementController::class, 'show'])->name('applicants.show');
-    Route::patch('/applicants/{applicant}/status', [ApplicantManagementController::class, 'updateStatus'])->name('applicants.update-status');
-    Route::delete('/applicants/{applicant}', [ApplicantManagementController::class, 'destroy'])->name('applicants.destroy');
+    // pendaftar Management
+    Route::get('/pendaftars', [pendaftarManagementController::class, 'index'])->name('pendaftars.index');
+    Route::get('/pendaftars/{pendaftar}', [pendaftarManagementController::class, 'show'])->name('pendaftars.show');
+    Route::patch('/pendaftars/{pendaftar}/status', [pendaftarManagementController::class, 'updateStatus'])->name('pendaftars.update-status');
+    Route::delete('/pendaftars/{pendaftar}', [pendaftarManagementController::class, 'destroy'])->name('pendaftars.destroy');
     
     // Announcements
     Route::resource('announcements', AnnouncementController::class);

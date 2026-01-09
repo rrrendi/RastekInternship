@@ -12,10 +12,10 @@
                 Kami membuka kesempatan bagi talenta terbaik untuk berkontribusi dalam pengembangan industri farmasi Indonesia.
             </p>
             <div class="flex flex-wrap gap-4">
-                <a href="{{ route('applicant.register') }}" class="bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                <a href="{{ route('pendaftar.register') }}" class="bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
                     Daftar Sekarang
                 </a>
-                <a href="{{ route('applicant.check-status') }}" class="bg-green-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-800 transition">
+                <a href="{{ route('pendaftar.check-status') }}" class="bg-green-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-800 transition">
                     Cek Status Pendaftaran
                 </a>
             </div>
@@ -184,7 +184,7 @@
         </div>
 
         <div class="mt-8 text-center">
-            <a href="{{ route('applicant.register') }}" class="inline-block bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition">
+            <a href="{{ route('pendaftar.register') }}" class="inline-block bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition">
                 Mulai Pendaftaran
             </a>
         </div>

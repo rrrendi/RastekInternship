@@ -15,7 +15,7 @@
             <p class="text-gray-600">Masukkan email yang Anda gunakan saat mendaftar</p>
         </div>
 
-        <form action="{{ route('applicant.status') }}" method="POST" class="space-y-6">
+        <form action="{{ route('pendaftar.status') }}" method="POST" class="space-y-6">
             @csrf
             
             <div>
@@ -35,7 +35,7 @@
         <div class="mt-6 text-center">
             <p class="text-sm text-gray-600">
                 Belum mendaftar? 
-                <a href="{{ route('applicant.register') }}" class="text-blue-600 hover:text-blue-700 font-medium">
+                <a href="{{ route('pendaftar.register') }}" class="text-blue-600 hover:text-blue-700 font-medium">
                     Daftar sekarang
                 </a>
             </p>

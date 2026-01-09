@@ -1,23 +1,23 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Applicant;
+use App\Models\pendaftar;
 use App\Models\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class ApplicantController extends Controller
+class pendaftarController extends Controller
 {
     public function create()
     {
-        return view('applicant.register');
+        return view('pendaftar.register');
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'full_name' => 'required|string|max:255',
-            'email' => 'required|email|unique:applicants,email',
+            'email' => 'required|email|unique:pendaftars,email',
             'phone' => 'required|string|max:20',
             'address' => 'required|string',
             'education_level' => 'required|in:SMK,D3,S1,S2',
@@ -43,7 +43,7 @@ class ApplicantController extends Controller
         }
 
         // Simpan data pendaftar
-        $applicant = Applicant::create($validated);
+        $pendaftar = pendaftar::create($validated);
 
         // Upload dokumen
         $documents = [
@@ -60,7 +60,7 @@ class ApplicantController extends Controller
             $documents['id_card_path'] = $request->file('id_card')->store('documents/id_cards', 'public');
         }
 
-        $applicant->documents()->create($documents);
+        $pendaftar->documents()->create($documents);
 
         return redirect()->route('home')->with('success', 'Pendaftaran berhasil! Kami akan menghubungi Anda segera.');
     }
@@ -71,12 +71,12 @@ class ApplicantController extends Controller
             'email' => 'required|email',
         ]);
 
-        $applicant = Applicant::where('email', $request->email)->first();
+        $pendaftar = pendaftar::where('email', $request->email)->first();
 
-        if (!$applicant) {
+        if (!$pendaftar) {
             return back()->with('error', 'Email tidak ditemukan dalam database pendaftar.');
         }
 
-        return view('applicant.status', compact('applicant'));
+        return view('pendaftar.status', compact('pendaftar'));
     }
 }

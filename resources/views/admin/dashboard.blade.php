@@ -14,7 +14,7 @@
                 </svg>
             </div>
         </div>
-        <p class="text-2xl font-bold text-gray-900">{{ $stats['total_applicants'] }}</p>
+        <p class="text-2xl font-bold text-gray-900">{{ $stats['total_pendaftars'] }}</p>
         <p class="text-sm text-gray-600">Total Pendaftar</p>
     </div>
 
@@ -67,11 +67,11 @@
     </div>
 </div>
 
-<!-- Recent Applicants -->
+<!-- Recent pendaftars -->
 <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
     <div class="p-6 border-b border-gray-200 flex items-center justify-between">
         <h3 class="text-lg font-semibold text-gray-900">Pendaftar Terbaru</h3>
-        <a href="{{ route('admin.applicants.index') }}" class="text-sm text-green-600 hover:text-green-700 font-medium">
+        <a href="{{ route('admin.pendaftars.index') }}" class="text-sm text-green-600 hover:text-green-700 font-medium">
             Lihat Semua →
         </a>
     </div>
@@ -89,33 +89,33 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
-                @forelse($recent_applicants as $applicant)
+                @forelse($recent_pendaftars as $pendaftar)
                 <tr class="hover:bg-gray-50">
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">{{ $applicant->full_name }}</div>
+                        <div class="text-sm font-medium text-gray-900">{{ $pendaftar->full_name }}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                        {{ $applicant->email }}
+                        {{ $pendaftar->email }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                        {{ $applicant->education_level }} - {{ $applicant->institution }}
+                        {{ $pendaftar->education_level }} - {{ $pendaftar->institution }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                        {{ $applicant->created_at->format('d/m/Y') }}
+                        {{ $pendaftar->created_at->format('d/m/Y') }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        @if($applicant->status === 'pending')
+                        @if($pendaftar->status === 'pending')
                             <span class="px-2 py-1 text-xs font-semibold bg-yellow-100 text-yellow-800 rounded-full">Pending</span>
-                        @elseif($applicant->status === 'reviewed')
+                        @elseif($pendaftar->status === 'reviewed')
                             <span class="px-2 py-1 text-xs font-semibold bg-blue-100 text-blue-800 rounded-full">Reviewed</span>
-                        @elseif($applicant->status === 'accepted')
+                        @elseif($pendaftar->status === 'accepted')
                             <span class="px-2 py-1 text-xs font-semibold bg-green-100 text-green-800 rounded-full">Diterima</span>
                         @else
                             <span class="px-2 py-1 text-xs font-semibold bg-red-100 text-red-800 rounded-full">Ditolak</span>
                         @endif
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm">
-                        <a href="{{ route('admin.applicants.show', $applicant) }}" class="text-green-600 hover:text-green-700 font-medium">
+                        <a href="{{ route('admin.pendaftars.show', $pendaftar) }}" class="text-green-600 hover:text-green-700 font-medium">
                             Detail
                         </a>
                     </td>
@@ -137,7 +137,7 @@
     <div class="bg-white rounded-xl border border-gray-200 p-6">
         <h3 class="text-lg font-semibold text-gray-900 mb-4">Aksi Cepat</h3>
         <div class="space-y-3">
-            <a href="{{ route('admin.applicants.index', ['status' => 'pending']) }}" 
+            <a href="{{ route('admin.pendaftars.index', ['status' => 'pending']) }}" 
                class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
                 <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mr-3">
                     <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -171,7 +171,7 @@
             <div>
                 <div class="flex justify-between mb-1">
                     <span class="text-sm text-gray-600">Pendaftar Baru</span>
-                    <span class="text-sm font-medium text-gray-900">{{ $stats['total_applicants'] }}</span>
+                    <span class="text-sm font-medium text-gray-900">{{ $stats['total_pendaftars'] }}</span>
                 </div>
                 <div class="w-full bg-gray-200 rounded-full h-2">
                     <div class="bg-blue-600 h-2 rounded-full" style="width: 75%"></div>

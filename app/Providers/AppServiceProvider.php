@@ -20,8 +20,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (app()->environment('local')) {
-            URL::forceScheme('https');
-        }
+        //cara sharing localhost
+
+        //run di CMD "winget install --id Cloudflare.cloudflared"
+
+        //aktifin codingan ini:
+        // if (app()->environment('local')) {
+        //     URL::forceScheme('https');
+        // }
+
+        //run di CMD "cloudflared tunnel --url http://127.0.0.1:8000 --protocol http2
     }
 }

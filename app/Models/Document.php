@@ -9,12 +9,12 @@ class Document extends Model
     use HasFactory;
 
     protected $fillable = [
-        'applicant_id', 'cover_letter_path', 'transcript_path',
+        'pendaftar_id', 'cover_letter_path', 'transcript_path',
         'cv_path', 'photo_path', 'id_card_path'
     ];
 
-    public function applicant()
+    public function pendaftar()
     {
-        return $this->belongsTo(Applicant::class);
+        return $this->belongsTo(pendaftar::class);
     }
 }
