@@ -6,6 +6,7 @@ use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ApplicantManagementController;
 use App\Http\Controllers\Admin\AnnouncementController;
+use App\Http\Controllers\Admin\UserManagementController;
 use Illuminate\Support\Facades\Auth;
 
 // Public Routes
@@ -41,6 +42,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     
     // Announcements
     Route::resource('announcements', AnnouncementController::class);
+
+    // User Management (TAMBAHKAN INI)
+    Route::resource('users', UserManagementController::class)->except(['show']);
+    Route::get('/change-password', [UserManagementController::class, 'showChangePassword'])->name('change-password');
+    Route::post('/change-password', [UserManagementController::class, 'changePassword'])->name('update-password');
 });
 
 // Auth routes - Laravel Breeze/Jetstream

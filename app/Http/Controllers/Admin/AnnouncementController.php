@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Announcement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class AnnouncementController extends Controller
 {
@@ -32,6 +33,11 @@ class AnnouncementController extends Controller
             'published_at' => 'nullable|date',
         ]);
 
+        // Auto-fill published_at jika kosong
+        if (empty($validated['published_at'])) {
+            $validated['published_at'] = Carbon::now();
+        }
+
         $validated['created_by'] = Auth::id();
         $validated['is_active'] = $request->has('is_active');
 
@@ -55,6 +61,11 @@ class AnnouncementController extends Controller
             'is_active' => 'boolean',
             'published_at' => 'nullable|date',
         ]);
+
+        // Auto-fill published_at jika kosong
+        if (empty($validated['published_at'])) {
+            $validated['published_at'] = Carbon::now();
+        }
 
         $validated['is_active'] = $request->has('is_active');
 

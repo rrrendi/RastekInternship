@@ -60,17 +60,7 @@
                 </div>
 
                 <!-- Published Date -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">
-                        Tanggal Publikasi (Opsional)
-                    </label>
-                    <input type="datetime-local" name="published_at" value="{{ old('published_at') }}"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent @error('published_at') border-red-500 @enderror">
-                    <p class="text-xs text-gray-500 mt-1">Kosongkan untuk menggunakan waktu saat ini</p>
-                    @error('published_at')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
+                
 
                 <!-- Is Active -->
                 <div class="flex items-center">

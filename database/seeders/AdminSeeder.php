@@ -16,17 +16,17 @@ class AdminSeeder extends Seeder
         // Cek apakah admin sudah ada, jika belum baru dibuat
         // Ini mencegah error duplicate entry saat seeder dijalankan berulang kali
         
-        if (!User::where('email', 'admin@biofarma.co.id')->exists()) {
+        if (!User::where('email', 'admin123@gmail.com')->exists()) {
             User::create([
-                'name' => 'Admin BioFarma',
-                'email' => 'admin@biofarma.co.id',
+                'name' => 'Admin Rastek',
+                'email' => 'admin123@gmail.com',
                 'password' => Hash::make('admin123'),
                 'role' => 'admin',
             ]);
             
-            $this->command->info('✓ Admin BioFarma created successfully');
+            $this->command->info('✓ Admin Rastek created successfully');
         } else {
-            $this->command->warn('✗ Admin BioFarma already exists, skipped');
+            $this->command->warn('✗ Admin Rastek already exists, skipped');
         }
 
         if (!User::where('email', 'rrendi6923@gmail.com')->exists()) {

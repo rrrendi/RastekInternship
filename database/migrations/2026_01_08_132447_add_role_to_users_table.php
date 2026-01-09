@@ -8,7 +8,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->enum('role', ['admin', 'applicant'])->default('applicant');
+            // Hapus default 'applicant', semua user adalah admin
+            $table->string('role')->default('admin');
         });
     }
 
