@@ -6,7 +6,7 @@ use App\Models\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class pendaftarController extends Controller
+class PendaftarController extends Controller
 {
     public function create()
     {

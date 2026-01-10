@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\pendaftarController;
+use App\Http\Controllers\PendaftarController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\pendaftarManagementController;
 use App\Http\Controllers\Admin\AnnouncementController;
@@ -11,12 +11,12 @@ use Illuminate\Support\Facades\Auth;
 
 // Public Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/daftar', [pendaftarController::class, 'create'])->name('pendaftar.register');
-Route::post('/daftar', [pendaftarController::class, 'store'])->name('pendaftar.store');
+Route::get('/daftar', [PendaftarController::class, 'create'])->name('pendaftar.register');
+Route::post('/daftar', [PendaftarController::class, 'store'])->name('pendaftar.store');
 Route::get('/cek-status', function() {
     return view('pendaftar.check-status');
 })->name('pendaftar.check-status');
-Route::post('/cek-status', [pendaftarController::class, 'checkStatus'])->name('pendaftar.status');
+Route::post('/cek-status', [PendaftarController::class, 'checkStatus'])->name('pendaftar.status');
 
 // Dashboard route - PENTING untuk redirect setelah login
 Route::middleware(['auth'])->group(function () {
