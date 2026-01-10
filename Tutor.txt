@@ -1,0 +1,11 @@
+git clone https://github.com/rrrendi/RastekInternship.git
+composer install
+npm install
+copy .env.example .env
+php artisan key:generate
+//sesuaikan .env
+php artisan migrate --seed  //php artisan migrate:fresh --seed
+php artisan storage:link
+npm run dev     //Compile untuk development
+npm run build   //ATAU untuk production
+php artisan serve
