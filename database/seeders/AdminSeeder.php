@@ -25,21 +25,10 @@ class AdminSeeder extends Seeder
             ]);
             
             $this->command->info('✓ Admin Rastek created successfully');
+            $this->command->info('email: admin123@gmail.com');
+            $this->command->info('password: admin123');
         } else {
             $this->command->warn('✗ Admin Rastek already exists, skipped');
-        }
-
-        if (!User::where('email', 'rrendi6923@gmail.com')->exists()) {
-            User::create([
-                'name' => 'Admin rendi',
-                'email' => 'rrendi6923@gmail.com',
-                'password' => Hash::make('rendiadmin'),
-                'role' => 'admin',
-            ]);
-            
-            $this->command->info('✓ Admin Aja created successfully');
-        } else {
-            $this->command->warn('✗ Admin Aja already exists, skipped');
         }
     }
 }
