@@ -1,4 +1,5 @@
 git clone https://github.com/rrrendi/RastekInternship.git
+cd RastekInternship
 composer install
 npm install
 copy .env.example .env
