@@ -36,6 +36,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     
     // pendaftar Management
     Route::get('/pendaftars', [pendaftarManagementController::class, 'index'])->name('pendaftars.index');
+    Route::get('/pendaftars/export/data', [pendaftarManagementController::class, 'export'])->name('pendaftars.export');
     Route::get('/pendaftars/{pendaftar}', [pendaftarManagementController::class, 'show'])->name('pendaftars.show');
     Route::patch('/pendaftars/{pendaftar}/status', [pendaftarManagementController::class, 'updateStatus'])->name('pendaftars.update-status');
     Route::delete('/pendaftars/{pendaftar}', [pendaftarManagementController::class, 'destroy'])->name('pendaftars.destroy');

@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use App\Models\pendaftar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Exports\PendaftarExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class pendaftarManagementController extends Controller
 {
@@ -16,7 +18,7 @@ class pendaftarManagementController extends Controller
             $query->where('status', $request->status);
         }
 
-        if ($request->has('search')) {
+        if ($request->has('search') && $request->search != '') {
             $query->where(function($q) use ($request) {
                 $q->where('full_name', 'like', '%' . $request->search . '%')
                   ->orWhere('email', 'like', '%' . $request->search . '%');
@@ -48,7 +50,6 @@ class pendaftarManagementController extends Controller
 
     public function destroy(pendaftar $pendaftar)
     {
-        // Hapus dokumen dari storage
         if ($pendaftar->documents) {
             Storage::disk('public')->delete([
                 $pendaftar->documents->cover_letter_path,
@@ -62,5 +63,26 @@ class pendaftarManagementController extends Controller
         $pendaftar->delete();
 
         return redirect()->route('admin.pendaftars.index')->with('success', 'Data pendaftar berhasil dihapus.');
+    }
+
+    public function export(Request $request)
+    {
+        $query = pendaftar::query();
+
+        if ($request->has('status') && $request->status != '') {
+            $query->where('status', $request->status);
+        }
+
+        if ($request->has('search') && $request->search != '') {
+            $query->where(function($q) use ($request) {
+                $q->where('full_name', 'like', '%' . $request->search . '%')
+                  ->orWhere('email', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        $pendaftars = $query->orderBy('created_at', 'desc')->get();
+        $filename = "rekap_data_pendaftar_" . date('Y-m-d_H-i-s') . ".xlsx";
+
+        return Excel::download(new PendaftarExport($pendaftars), $filename);
     }
 }

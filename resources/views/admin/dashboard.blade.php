@@ -4,7 +4,6 @@
 @section('page-title', 'Dashboard')
 
 @section('content')
-<!-- Statistics Cards -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
     <div class="bg-white rounded-xl p-6 border border-gray-200">
         <div class="flex items-center justify-between mb-2">
@@ -67,7 +66,6 @@
     </div>
 </div>
 
-<!-- Recent pendaftars -->
 <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
     <div class="p-6 border-b border-gray-200 flex items-center justify-between">
         <h3 class="text-lg font-semibold text-gray-900">Pendaftar Terbaru</h3>
@@ -132,7 +130,6 @@
     </div>
 </div>
 
-<!-- Quick Actions -->
 <div class="grid md:grid-cols-2 gap-6 mt-8">
     <div class="bg-white rounded-xl border border-gray-200 p-6">
         <h3 class="text-lg font-semibold text-gray-900 mb-4">Aksi Cepat</h3>
@@ -167,6 +164,19 @@
 
     <div class="bg-white rounded-xl border border-gray-200 p-6">
         <h3 class="text-lg font-semibold text-gray-900 mb-4">Statistik Minggu Ini</h3>
+        
+        @php
+            // Mencegah pembagian dengan nol
+            $totalPendaftar = max($stats['total_pendaftars'], 1);
+            
+            // Kalkulasi data
+            $totalDiproses = $stats['reviewed'] + $stats['accepted'];
+            $persenDiproses = ($totalDiproses / $totalPendaftar) * 100;
+            
+            $persenBaru = $stats['total_pendaftars'] > 0 ? 100 : 0; // Pendaftar selalu 100% bar-nya
+            $persenPengumuman = min(($active_announcements / 5) * 100, 100); // Asumsi target 5 pengumuman penuh (bisa disesuaikan)
+        @endphp
+
         <div class="space-y-4">
             <div>
                 <div class="flex justify-between mb-1">
@@ -174,16 +184,16 @@
                     <span class="text-sm font-medium text-gray-900">{{ $stats['total_pendaftars'] }}</span>
                 </div>
                 <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div class="bg-blue-600 h-2 rounded-full" style="width: 75%"></div>
+                    <div class="bg-blue-600 h-2 rounded-full transition-all duration-500" style="width: {{ $persenBaru }}%"></div>
                 </div>
             </div>
             <div>
                 <div class="flex justify-between mb-1">
                     <span class="text-sm text-gray-600">Diproses</span>
-                    <span class="text-sm font-medium text-gray-900">{{ $stats['reviewed'] + $stats['accepted'] }}</span>
+                    <span class="text-sm font-medium text-gray-900">{{ $totalDiproses }}</span>
                 </div>
                 <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div class="bg-green-600 h-2 rounded-full" style="width: 60%"></div>
+                    <div class="bg-green-600 h-2 rounded-full transition-all duration-500" style="width: {{ $persenDiproses }}%"></div>
                 </div>
             </div>
             <div>
@@ -192,7 +202,7 @@
                     <span class="text-sm font-medium text-gray-900">{{ $active_announcements }}</span>
                 </div>
                 <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div class="bg-purple-600 h-2 rounded-full" style="width: 45%"></div>
+                    <div class="bg-purple-600 h-2 rounded-full transition-all duration-500" style="width: {{ $persenPengumuman }}%"></div>
                 </div>
             </div>
         </div>
